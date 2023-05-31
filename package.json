@@ -1,0 +1,29 @@
+{
+  "name": "cypress-intermediario",
+  "version": "1.0.0",
+  "description": "curso intermediario utilizando framwork cypress",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsimoura/cypress-intermediario.git"
+  },
+  "keywords": [
+    "E2E",
+    "cypress_intermediario",
+    "automacao"
+  ],
+  "author": "JHONTAN SIMOURA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsimoura/cypress-intermediario/issues"
+  },
+  "homepage": "https://github.com/jsimoura/cypress-intermediario#readme",
+  "devDependencies": {
+    "cypress": "^12.13.0",
+    "faker-br": "^0.1.0"
+  }
+}
