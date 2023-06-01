@@ -21,6 +21,8 @@ let user ={
   email:'jhonatans@gmail.com',
   password:'58745308',
   fullName:'JHONATAN SIMOURA DE SOUZA',
+  incorrectEmail:'mario@gmail.com',
+  incorrectPassoword:'1234',
 }
 describe('Automation Exercises', () => {
   beforeEach(()=>{
@@ -69,8 +71,15 @@ describe('Automation Exercises', () => {
     cy.get('b').contains(user.fullName).should('be.visible')
     cy.get('a').contains(' Logout').click()
     cy.url().should('include','/login')
-    
+  })
 
-  
+  it('Test Case 3: Login User with incorrect email and password', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a[href="/login"]').click()
+    cy.get('h2').contains('Login to your account').should('be.visible')
+    cy.get('[data-qa="login-email"]').type(user.incorrectEmail)
+    cy.get('[data-qa="login-password"]').type(user.incorrectPassoword)
+    cy.get('button[data-qa="login-button"]').click()
+    cy.get('p').contains('Your email or password is incorrect!').should('be.visible')
   })
 })
