@@ -16,10 +16,17 @@ let state = faker.address.state()
 let city = faker.address.city()
 let zipcode = faker.address.zipCode()
 let mobile_number = faker.phone.phoneNumber()
- 
+
+let user ={
+  email:'jhonatans@gmail.com',
+  password:'58745308',
+  fullName:'JHONATAN SIMOURA DE SOUZA',
+}
 describe('Automation Exercises', () => {
+  beforeEach(()=>{
+    cy.visit('/')
+  })
   it('Test Case 1: Register User', () => {
-    cy.visit('http://automationexercise.com')
     cy.get('a > img').should('be.visible')
     cy.get('a[href="/login"]').click()
     cy.get('h2').contains('New User Signup!').should('be.visible')
@@ -34,16 +41,16 @@ describe('Automation Exercises', () => {
     cy.get('[data-qa="years"]').select('1992')
     cy.get('#newsletter').check()
     cy.get('#optin').check()
-    cy.get('[data-qa="first_name"]').type('firstName')
-    cy.get('[data-qa="last_name"]').type('lastName')
-    cy.get('[data-qa="company"]').type('company')
+    cy.get('[data-qa="first_name"]').type(firstName)
+    cy.get('[data-qa="last_name"]').type(lastName)
+    cy.get('[data-qa="company"]').type(company)
     cy.get('[data-qa="address"]').type(address, { delay: 0 })
     cy.get('[data-qa="address2"]').type(address2, { delay: 0 })
     cy.get('[data-qa="country"]').select(country, { delay: 0 })
-    cy.get('[data-qa="state"]').type('state')
-    cy.get('[data-qa="city"]').type('city')
-    cy.get('[data-qa="zipcode"]').type('zipcode')
-    cy.get('[data-qa="mobile_number"]').type('mobile_number')
+    cy.get('[data-qa="state"]').type(state)
+    cy.get('[data-qa="city"]').type(city)
+    cy.get('[data-qa="zipcode"]').type(zipcode)
+    cy.get('[data-qa="mobile_number"]').type(mobile_number)
     cy.get('[data-qa="create-account"]').click()
     cy.get('h2[data-qa="account-created"]').should('be.visible')
     cy.get('[data-qa="continue-button"]').click()
@@ -51,5 +58,19 @@ describe('Automation Exercises', () => {
     cy.get('a[href="/delete_account"]').click()
     cy.get('h2[data-qa="account-deleted"]').should('be.visible')
     cy.get('[data-qa="continue-button"]').click()
+  })
+  it('test case 2: Usuário de login com e-mail e senha corretos', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a[href="/login"]').click()
+    cy.get('h2').contains('Login to your account').should('be.visible')
+    cy.get('[data-qa="login-email"]').type(user.email)
+    cy.get('[data-qa="login-password"]').type(user.password)
+    cy.get('button[data-qa="login-button"]').click()
+    cy.get('b').contains(user.fullName).should('be.visible')
+    cy.get('a').contains(' Logout').click()
+    cy.url().should('include','/login')
+    
+
+  
   })
 })
