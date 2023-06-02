@@ -93,4 +93,13 @@ describe('Automation Exercises', () => {
     cy.get('a').contains(' Logout').click()
     cy.url().should('include','/login')
   })
+  it('test case 5:Registrar usuário com e-mail existente!', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a[href="/login"]').click()
+    cy.get('h2').contains('New User Signup!').should('be.visible')
+    cy.get('input[data-qa="signup-name"]').type(firstName)
+    cy.get('input[data-qa="signup-email"]').type(user.email)
+    cy.get('button[data-qa="signup-button"]').click()
+    cy.get('p').contains('Email Address already exist!').should('be.visible')
+  })
 })
