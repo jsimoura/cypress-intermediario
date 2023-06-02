@@ -82,4 +82,15 @@ describe('Automation Exercises', () => {
     cy.get('button[data-qa="login-button"]').click()
     cy.get('p').contains('Your email or password is incorrect!').should('be.visible')
   })
+
+  it('test case 4: Sair do Usuário', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a[href="/login"]').click()
+    cy.get('[data-qa="login-email"]').type(user.email)
+    cy.get('[data-qa="login-password"]').type(user.password)
+    cy.get('button[data-qa="login-button"]').click()
+    cy.get('b').contains(user.fullName).should('be.visible')
+    cy.get('a').contains(' Logout').click()
+    cy.url().should('include','/login')
+  })
 })
