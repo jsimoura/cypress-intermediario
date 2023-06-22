@@ -134,7 +134,7 @@ describe('Automation Exercises', () => {
     cy.get('p').contains('Category: Women ').should('be.visible')
 
   })
-  it.only('test case 9: produto de pesquisa', () => {
+  it('test case 9: produto de pesquisa', () => {
     cy.get('a > img').should('be.visible')
     cy.get('a').contains('Products').click()
     cy.get('#sale_image').should('be.visible')
@@ -142,5 +142,12 @@ describe('Automation Exercises', () => {
     cy.get('#submit_search').click()
     cy.get('.productinfo > img').should('be.visible')
 
+  })
+  it('test case 10: verifique a assinatura na página inicial', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('h2').contains('Subscription').should('be.visible')
+    cy.get('#susbscribe_email').type(user.email)
+    cy.get('#subscribe > .fa').click() 
+    cy.get('.alert-success').should('be.visible')
   })
 })
