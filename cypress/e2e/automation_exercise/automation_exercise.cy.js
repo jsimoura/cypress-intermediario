@@ -102,4 +102,45 @@ describe('Automation Exercises', () => {
     cy.get('button[data-qa="signup-button"]').click()
     cy.get('p').contains('Email Address already exist!').should('be.visible')
   })
+  it('test case 6: Formulário de contato', () => {
+
+    const longText = Cypress._.repeat('Obrigado por tudo', 6)
+    cy.get('a > img').should('be.visible')
+    cy.get('a[href="/contact_us"]').click()
+    cy.get('h2').contains('Get In Touch').should('be.visible')
+    cy.get('[data-qa="name"]').type(firstName)
+    cy.get('[data-qa="email"]').type(user.email)
+    cy.get('[data-qa="subject"]').type('moda')
+    cy.get('[data-qa="message"]').type(longText)
+    cy.get('input[type="file"]')
+    .should('not.have.value')
+  })
+  it('test case  7: verificar a página de casos de teste', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a').contains("Test Cases").click()
+    cy.get('b').contains('Test Cases').should('be.visible')
+
+  })
+  it('test case 8: verificar todos os produtos e a página de detalhes do produto', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a').contains('Products').click()
+    cy.get('#sale_image').should('be.visible')
+    cy.get('#search_product').should('be.visible')
+    cy.get('a').contains("View Product").click()
+    cy.get('b').contains('Availability').should('be.visible')
+    cy.get('b').contains('Condition').should('be.visible')
+    cy.get('b').contains('Brand').should('be.visible')
+    cy.get('h2').contains('Blue Top').should('be.visible')
+    cy.get('p').contains('Category: Women ').should('be.visible')
+
+  })
+  it.only('test case 9: produto de pesquisa', () => {
+    cy.get('a > img').should('be.visible')
+    cy.get('a').contains('Products').click()
+    cy.get('#sale_image').should('be.visible')
+    cy.get('#search_product').type('Blue Top')
+    cy.get('#submit_search').click()
+    cy.get('.productinfo > img').should('be.visible')
+
+  })
 })
